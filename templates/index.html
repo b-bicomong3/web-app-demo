@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Contacts Wed App</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    </head>
+    <body class="bg-info">
+        <div class="container">
+            <div class="jumbotron mt-5">
+                <h1>Contacts App</h1>
+                <form method="POST" action="/">
+                    <label for="first_name"> First Name:</label>
+                    <input type="text" name="first_name">
+                    <label for="last_name"> Last Name:</label>
+                    <input type="text" name="last_name">
+                    <label for="email"> Email:</label>
+                    <input type="text" name="email">
+                    <input type="submit" value="Add">
+                </form>
+                {% if "already used" in alert %}
+                    <div class="alert alert-danger" role="alert">
+                        {{alert}}
+                    </div>
+                {% endif %}
+                {% if "Successfully added" in alert %}
+                    <div class="alert alert-success" role="alert">
+                        {{alert}}
+                    </div>
+                {% endif %}
+                <hr>
+                <h1>Current Contacts</h1>
+                <table class="table">
+                    <tr>
+                        <th>First Name</th><th>Last Name</th><th>Email</th>
+                    </tr>
+                    {% for contact in contacts %}
+                        <tr>
+                            <td>{{contact[0]}}</td><td>{{contact[1]}}</td><td>{{contact[2]}}</td>
+                            <td><a href="/delete/{{contact[2]}}" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>    
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    </body>
+</html>
